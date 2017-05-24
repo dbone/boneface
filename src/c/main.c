@@ -8,10 +8,11 @@ static GFont s_time_font;
 static void main_window_load(Window *window) {
   // ...
   // Create GFont
-  s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_PERFECT_DOS_48));
+  //s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_NOVA_MONO_16));
+  //s_time_font = fonts_get_system_font(FONT_KEY_GOTHIC_24);
 
   // Apply to TextLayer
-  text_layer_set_font(s_time_layer, s_time_font);
+  //text_layer_set_font(s_time_layer, s_time_font);
   // ...
   // Get information about the Window
   Layer *window_layer = window_get_root_layer(window);
@@ -48,8 +49,7 @@ static void update_time() {
 
   // Write the current hours and minutes into a buffer
   static char s_buffer[8];
-  strftime(s_buffer, sizeof(s_buffer), clock_is_24h_style() ?
-                                          "%H:%M" : "%I:%M", tick_time);
+  strftime(s_buffer, sizeof(s_buffer), clock_is_24h_style() ? "%H:%M" : "T%I:%M", tick_time);
 
   // Display this time on the TextLayer
   text_layer_set_text(s_time_layer, s_buffer);
