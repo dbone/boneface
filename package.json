@@ -1,0 +1,21 @@
+{
+    "author": "pebble@duanebone.com",
+    "dependencies": {},
+    "keywords": [],
+    "name": "boneface",
+    "pebble": {
+        "displayName": "BoneFace",
+        "enableMultiJS": false,
+        "messageKeys": [],
+        "projectType": "native",
+        "resources": {
+            "media": []
+        },
+        "sdkVersion": "3",
+        "uuid": "6104996e-a3b3-43a5-a5f8-70f274219930",
+        "watchapp": {
+            "watchface": false
+        }
+    },
+    "version": "1.0.0"
+}
