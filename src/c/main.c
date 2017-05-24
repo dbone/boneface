@@ -1,16 +1,12 @@
 #include <pebble.h>
 
 static Window *s_main_window;
-
 static TextLayer *s_time_layer;
 static GFont s_time_font;
-
 static TextLayer *s_day_layer;
 static GFont s_day_font;
-
 static TextLayer *s_month_layer;
 static GFont s_month_font;
-
 static TextLayer *s_date_layer;
 static GFont s_date_font;
 
@@ -53,8 +49,7 @@ static void main_window_load(Window *window) {
   text_layer_set_text(s_date_layer, "--.-----");
   text_layer_set_font(s_date_layer, s_month_font);
   text_layer_set_text_alignment(s_date_layer, GTextAlignmentCenter);
-  
-  // Add it as a child layer to the Window's root layer
+
   layer_add_child(window_layer, text_layer_get_layer(s_time_layer));
   layer_add_child(window_layer, text_layer_get_layer(s_day_layer));
   layer_add_child(window_layer, text_layer_get_layer(s_month_layer));
@@ -73,11 +68,9 @@ static void main_window_unload(Window *window) {
 }
 
 static void update_time() {
-  // Get a tm structure
   time_t temp = time(NULL);
   struct tm *tick_time = localtime(&temp);
 
-  // Write the current hours and minutes into a buffer
   static char s_buffer[9];
   static char *t_buffer;
   static char d_buffer[11];
@@ -100,7 +93,6 @@ static void update_time() {
     y_pointer = y_buffer;
   }
 
-  // Display this time on the TextLayer
   text_layer_set_text(s_time_layer, t_buffer);
   text_layer_set_text(s_day_layer, d_buffer);
   text_layer_set_text(s_month_layer, m_buffer);
@@ -112,28 +104,18 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 }
 
 static void init() {
-  // Create main Window element and assign to pointer
   s_main_window = window_create();
-
-  // Set handlers to manage the elements inside the Window
   window_set_window_handlers(s_main_window, (WindowHandlers) {
     .load = main_window_load,
     .unload = main_window_unload
   });
   window_set_background_color(s_main_window, GColorBlack);
-
-  // Show the Window on the watch, with animated=true
   window_stack_push(s_main_window, true);
-  
-  // Make sure the time is displayed from the start
   update_time();
-  
-  // Register with TickTimerService
   tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
 }
 
 static void deinit() {
-  // Destroy Window
   window_destroy(s_main_window);
 }
 
