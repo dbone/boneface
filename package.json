@@ -12,6 +12,12 @@
             "media": [
                 {
                     "file": "fonts/nova.ttf",
+                    "name": "NOVA_MONO_30",
+                    "targetPlatforms": null,
+                    "type": "font"
+                },
+                {
+                    "file": "fonts/nova.ttf",
                     "name": "NOVA_MONO_24",
                     "targetPlatforms": null,
                     "type": "font"
@@ -19,12 +25,6 @@
                 {
                     "file": "fonts/nova.ttf",
                     "name": "NOVA_MONO_20",
-                    "targetPlatforms": null,
-                    "type": "font"
-                },
-                {
-                    "file": "fonts/nova.ttf",
-                    "name": "NOVA_MONO_30",
                     "targetPlatforms": null,
                     "type": "font"
                 }
